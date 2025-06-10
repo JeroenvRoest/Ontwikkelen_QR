@@ -27,17 +27,22 @@ function onScanSuccess(decodedText) {
       // Maak knoppen zichtbaar
       document.getElementById("showNotesBtn").style.display = "inline-block";
       document.getElementById("showReportsBtn").style.display = "inline-block";
+      document.getElementById("showEmergencyContactBtn").style.display = "inline-block";
 
       // Event listeners voor knoppen
       const showNotesBtn = document.getElementById("showNotesBtn");
       const showReportsBtn = document.getElementById("showReportsBtn");
+      const showEmergencyContactBtn = document.getElementById("showEmergencyContactBtn");
 
       showNotesBtn.onclick = () => fetchMedicalNotes(data.id);
       showReportsBtn.onclick = () => fetchReportsByClient(data.id);
+      showEmergencyContactBtn.onclick = () => fetchEmergencyContact(data.id);
 
       // Maak vorige data leeg
       document.getElementById("medicalNotes").innerHTML = "";
       document.getElementById("reports").innerHTML = "";
+      document.getElementById("emergencyContact").innerHTML = "";
+
     })
     .catch(err => {
       console.error(err);
@@ -108,13 +113,10 @@ function fetchMedicalNotes(clientId) {
     });
 }
 
-function fetchReportsByClient(clientId, options = {}) {
+function fetchReportsByClient(clientId) {
   const reportsContainer = document.getElementById("reports");
   reportsContainer.innerHTML = "Bezig met laden...";
 
-  if (options.report_type && Array.isArray(options.report_type)) {
-    options.report_type.forEach(rt => params.append("report_type", rt));
-  }
 
   // API rapportages
 const url = `https://1a2480b0-fd9b-48ad-bfa8-f417948043b0.mock.pstmn.io/t/dossier/reports/${clientId}`;
@@ -153,4 +155,48 @@ const url = `https://1a2480b0-fd9b-48ad-bfa8-f417948043b0.mock.pstmn.io/t/dossie
       reportsContainer.innerHTML = "Fout bij ophalen rapportages.";
     });
 }
+
+function fetchEmergencyContact(clientId) {
+  // API URL
+  const url = `https://1a2480b0-fd9b-48ad-bfa8-f417948043b0.mock.pstmn.io/t/client_contact_relations/${clientId}`;
+  const container = document.getElementById("emergencyContact");
+  
+  // Geef feedback dat het aan het laden is
+  container.innerHTML = "Bezig met laden...";
+
+  // Vraag de data op bij de API
+  return fetch(url)
+    .then(res => {
+      // Controleer of het antwoord OK is, anders gooi een fout
+      if (!res.ok) throw new Error(`Fout bij ophalen contactgegevens: ${res.statusText}`);
+      return res.json();
+    })
+    .then(data => {
+     
+      const contactsArray = data.contacts;
+
+      // Filter de op noodcontacten
+      const emergencyContacts = contactsArray.filter(contact => contact.inCaseOfEmergency === true);
+
+      if (emergencyContacts.length > 0) {
+        const contact = emergencyContacts[0];
+       
+        container.innerHTML = `
+          <h4>Noodcontact</h4>
+          <p><strong>Naam:</strong> ${contact.name || "Onbekend"}</p>
+          <p><strong>Relatie:</strong> ${contact.clientContactRelationType?.name || contact.personalRelationType?.name || "Onbekend"}</p>
+          <p><strong>Telefoon:</strong> ${contact.personalRelationType?.relationCategory?.contactInfo || "Onbekend"}</p>
+        `;
+      } else {
+        // Geen noodcontact gevonden, dus toon melding
+        container.innerHTML = "Geen noodcontact gevonden.";
+      }
+    })
+    .catch(err => {
+      // fout afhandeling
+      console.error(err);
+      container.innerHTML = "Fout bij ophalen noodcontact.";
+    });
+}
+
 
