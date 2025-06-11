@@ -50,19 +50,35 @@ function onScanSuccess(decodedText) {
     });
 }
 
-
-// Instantieer de QR-code lezer
+// lijst met beschikbare camera's
+let cameras = [];
+// index van de huidige camera
+let currentCameraIndex = 0;
 const html5QrCode = new Html5Qrcode("reader");
 
-// Camera kiezen en scanner starten
+// Functie om scanner te starten met de camera op currentCameraIndex
+function startScanner() {
+  if (cameras.length === 0) {
+    document.getElementById("result").innerText = "Geen camera's gevonden.";
+    return;
+  }
+  const cameraId = cameras[currentCameraIndex].id;
+  html5QrCode.start(
+    cameraId,
+    { fps: 10, qrbox: 250 },
+    onScanSuccess
+  ).catch(err => {
+    console.error("Kan scanner niet starten:", err);
+    document.getElementById("result").innerText = "Fout bij starten scanner.";
+  });
+}
+
+// Camera's ophalen en scanner starten
 Html5Qrcode.getCameras().then(devices => {
   if (devices && devices.length) {
-    const cameraId = devices[0].id;
-    html5QrCode.start(
-      cameraId,
-      { fps: 10, qrbox: 250 },
-      onScanSuccess
-    );
+    cameras = devices;
+    currentCameraIndex = 0;
+    startScanner();
   } else {
     document.getElementById("result").innerText = "Geen camera's gevonden.";
   }
@@ -70,6 +86,28 @@ Html5Qrcode.getCameras().then(devices => {
   console.error("Camera-initialisatie mislukt:", err);
   document.getElementById("result").innerText = "Fout bij toegang tot camera.";
 });
+
+// Switch camera functie
+function switchCamera() {
+  if (cameras.length <= 1) {
+
+    // geeft popup: 1 camera beschikbaar
+    alert("Er is maar één camera beschikbaar.");
+    return;
+  }
+  html5QrCode.stop().then(() => {
+    // Volgende camera selecteren
+    currentCameraIndex = (currentCameraIndex + 1) % cameras.length;
+    startScanner();
+  }).catch(err => {
+    console.error("Kon scanner niet stoppen:", err);
+  });
+}
+
+// Voeg event listener toe aan de switchCameraBtn
+document.getElementById("switchCameraBtn").addEventListener("click", switchCamera);
+
+
 
 // medische notities ophalen
 function fetchMedicalNotes(clientId) {
@@ -188,7 +226,7 @@ function fetchEmergencyContact(clientId) {
           <p><strong>Telefoon:</strong> ${contact.personalRelationType?.relationCategory?.contactInfo || "Onbekend"}</p>
         `;
       } else {
-        // Geen noodcontact gevonden, dus toon melding
+        // Geen noodcontact gevonden
         container.innerHTML = "Geen noodcontact gevonden.";
       }
     })
