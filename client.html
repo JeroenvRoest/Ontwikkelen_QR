@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <title>Cliëntgegevens</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://unpkg.com/html5-qrcode"></script>
+</head>
+<body>
+  <!-- Clientgegevens -->
+  <div id="result-container" style="margin-top: 20px;">
+    <h3>Cliëntgegevens</h3>
+    <p><strong>Naam:</strong> <span id="name"></span></p>
+    <p><strong>Cliënt ID:</strong> <span id="clientId"></span></p>
+    <p><strong>Geboortedatum:</strong> <span id="geboortedatum"></span></p>
+    <p><strong>Kamernummer:</strong> <span id="kamernummer"></span></p>
+    <p><strong>Afdeling:</strong> <span id="afdeling"></span></p>
+    <p><strong>Allergieën:</strong> <span id="allergieën"></span></p>
+    <p><strong>Reanimeren:</strong> <span id="reanimeren"></span></p>
+  </div>
+
+  <!-- Knoppen -->
+  <button id="showNotesBtn" style="display:none; margin-top: 10px;">Toon medische notities</button>
+  <div id="medicalNotes" style="margin-top: 20px;"></div>
+
+  <button id="showReportsBtn" style="display:none; margin-top: 10px;">Toon rapportages</button>
+  <div id="reports" style="margin-top: 20px;"></div>
+
+  <button id="showEmergencyContactBtn" style="display:none; margin-top: 10px;">Toon noodcontact</button>
+  <div id="emergencyContact" style="margin-top: 20px;"></div>
+
+  <!-- scripts -->
+  <script src="client.js"></script>
+</body>
+</html>
