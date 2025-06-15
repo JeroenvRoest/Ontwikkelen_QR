@@ -1,31 +1,37 @@
 <!DOCTYPE html>
 <html lang="nl">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Login</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" />
+  </head>
 
+  <body>
+    <div class="page">
+      <header>
+        <div id="top-header"></div>
+        <img src="Images/Logo-site-blok.png" alt="Logo Anker" id="logo" />
+      </header>
 
+      <main class="login-container">
+        <div class="login-form">
+          <h1>Login</h1>
+          <form id="loginForm">
+            <label for="username">Gebruikersnaam</label><br />
+            <input type="text" id="username" name="username" required /><br /><br />
 
-<body>
-   <!-- inlog veld -->
+            <label for="password">Wachtwoord</label><br />
+            <input type="password" id="password" name="password" required /><br /><br />
 
-  <h1>Login</h1>
-  <form id="loginForm">
-    <label for="username">Gebruikersnaam:</label><br />
-    <input type="text" id="username" name="username" required /><br /><br />
-    
-    <label for="password">Wachtwoord:</label><br />
-    <input type="password" id="password" name="password" required /><br /><br />
-    
-    <button type="submit">Inloggen</button>
-  </form>
+            <button type="submit">Inloggen</button>
+          </form>
+          <p id="message"></p>
+        </div>
+      </main>
+    </div>
 
-  <p id="message"></p>
-
-  <script src="login.js"></script>
-
-</body>
+    <script src="login.js"></script>
+  </body>
 </html>

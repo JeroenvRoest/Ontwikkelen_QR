@@ -1,8 +1,14 @@
+let isScanning = false;
+
 function onScanSuccess(decodedText) {
+  if (isScanning) return; //voorkomt dubbele scans
+  isScanning = true;
+
   console.log("Scanned:", decodedText);
 
   // stop scanner om dubble scans te voorkomen
   html5QrCode.stop().then(() => {
+    document.getElementById("reader").innerHTML = "";
     console.log("Scanner gestopt na succesvolle scan.");
     window.location.href = `client.html?id=${decodedText}`;
   }).catch(err => {

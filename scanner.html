@@ -1,22 +1,33 @@
 <!DOCTYPE html>
 <html lang="nl">
-<head>
-  <meta charset="UTF-8" />
-  <title>QR Client Scanner</title>
-  <link rel="stylesheet" href="style.css" />
-  <script src="https://unpkg.com/html5-qrcode"></script>
-</head>
-<body>
-  <h1>Scan een QR-code</h1>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>QR Client Scanner</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://unpkg.com/html5-qrcode"></script>
+  </head>
+  <body>
+    <div class="page">
+      <header>
+        <div id="top-header"></div>
+        <img src="Images/Logo-site-blok.png" alt="Logo Anker" id="logo" />
+      </header>
 
-  <!-- QR-scanner container -->
-  <div id="reader" style="width:300px;"></div>
+      <main class="reader-wrapper">
+        <h1>Scan een QR-code</h1>
+        <!-- QR-scanner container -->
+        <div id="reader"></div>
 
-  <!-- Algemene foutmeldingen/resultaten -->
-  <pre id="result" style="margin-top: 20px; background-color: #f5f5f5; padding: 10px;"></pre>
+        <!-- Algemene foutmeldingen/resultaten -->
+        <pre id="result"></pre>
+      </main>
 
-  <button id="switchCameraBtn">Camera wisselen</button>
-  <!-- scripts -->
-  <script src="scanner.js"></script>
-</body>
+      <footer>
+        <button id="switchCameraBtn">Camera wisselen</button>
+      </footer>
+    </div>
+    <!-- scripts -->
+    <script src="scanner.js"></script>
+  </body>
 </html>

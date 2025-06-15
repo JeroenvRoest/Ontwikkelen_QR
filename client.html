@@ -1,35 +1,58 @@
 <!DOCTYPE html>
 <html lang="nl">
-<head>
-  <meta charset="UTF-8" />
-  <title>Cliëntgegevens</title>
-  <link rel="stylesheet" href="style.css" />
-  <script src="https://unpkg.com/html5-qrcode"></script>
-</head>
-<body>
-  <!-- Clientgegevens -->
-  <div id="result-container" style="margin-top: 20px;">
-    <h3>Cliëntgegevens</h3>
-    <p><strong>Naam:</strong> <span id="name"></span></p>
-    <p><strong>Cliënt ID:</strong> <span id="clientId"></span></p>
-    <p><strong>Geboortedatum:</strong> <span id="geboortedatum"></span></p>
-    <p><strong>Kamernummer:</strong> <span id="kamernummer"></span></p>
-    <p><strong>Afdeling:</strong> <span id="afdeling"></span></p>
-    <p><strong>Allergieën:</strong> <span id="allergieën"></span></p>
-    <p><strong>Reanimeren:</strong> <span id="reanimeren"></span></p>
-  </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Cliëntgegevens</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://unpkg.com/html5-qrcode"></script>
+  </head>
+  <body>
+    <div class="page">
+      <div id="top-header"></div>
+      <header class="client-header">
+        <img src="Images/Logo-site-blok.png" alt="Logo Anker" id="logo" />
+        <div class="emergency-wrapper">
+          <button id="showEmergencyContactBtn" class="header-button">
+            Noodcontact
+          </button>
+          <div id="emergencyContact" class="emergency-contact hidden"></div>
+        </div>
+      </header>
 
-  <!-- Knoppen -->
-  <button id="showNotesBtn" style="display:none; margin-top: 10px;">Toon medische notities</button>
-  <div id="medicalNotes" style="margin-top: 20px;"></div>
+      <div class="client-container">
+        <!-- Clientgegevens -->
+        <div class="client-info" id="result-container">
+          <h3>Cliëntgegevens</h3>
+          <p><strong>Naam:</strong> <span id="name"></span></p>
+          <p><strong>Cliënt ID:</strong> <span id="clientId"></span></p>
+          <p>
+            <strong>Geboortedatum:</strong> <span id="geboortedatum"></span>
+          </p>
+          <p><strong>Kamernummer:</strong> <span id="kamernummer"></span></p>
+          <p><strong>Afdeling:</strong> <span id="afdeling"></span></p>
+          <p><strong>Allergieën:</strong> <span id="allergieën"></span></p>
+          <p><strong>Reanimeren:</strong> <span id="reanimeren"></span></p>
+        </div>
 
-  <button id="showReportsBtn" style="display:none; margin-top: 10px;">Toon rapportages</button>
-  <div id="reports" style="margin-top: 20px;"></div>
+        <!-- Knoppen -->
+        <button id="showNotesBtn">Medische notities</button>
+        <div id="medicalNotes"></div>
 
-  <button id="showEmergencyContactBtn" style="display:none; margin-top: 10px;">Toon noodcontact</button>
-  <div id="emergencyContact" style="margin-top: 20px;"></div>
+        <button id="showReportsBtn">Rapportages</button>
+        <div id="reports"></div>
 
-  <!-- scripts -->
-  <script src="client.js"></script>
-</body>
+        <button id="writeReportBtn">Rapportage maken</button>
+      </div>
+
+      <footer>
+         <button onclick="location.href='scanner.html'" id="newScannerBtn">
+          nieuw QR-code scannen
+        </button>
+      </footer>
+    </div>
+
+    <!-- scripts -->
+    <script src="client.js"></script>
+  </body>
 </html>
