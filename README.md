@@ -10,7 +10,7 @@ Deze HTML-webapplicatie scant QR-codes en haalt cliëntgegevens op via een mockv
 - [Mock API opzetten in Postman](#mock-api-opzetten-in-postman)
 - [Aanpassen van de API-link in de HTML](#aanpassen-van-de-api-link-in-de-html)
 - [Structuur van de repository](#structuur-van-de-repository)
-- [Licentie](#licentie)
+
 
 ## Beschrijving
 
@@ -54,7 +54,19 @@ Klik op de drie puntjes (⋮) naast de geïmporteerde collectie "ONS API".
 Na het opzetten van de mockserver in Postman moet je de link in de HTML-code aanpassen zodat de applicatie gegevens ophaalt van de juiste API.
 
 Stappen:
-1. zoek in de .JS bestanden naar de plaatsen waar de API wordt aangeroepen. (deze plekken zijn voorzien van comments met daarin API dit kan helpen met het vinden van deze regels).
-(een voorbeeld is: https://1a2480b0-fd9b-48ad-bfa8-f417948043b0.mock.pstmn.io/t/clients/${clientId}/medical_notes)
-2. in bovenstaand voorbeeld vervang alles behalve /t/clients/${clientId}/medical_notes voor de gekopieerde link van Postman.
-3. als de postman serverdraait zal nu de applicatie de requests door sturen naar de nieuwe server.
+1. zoek in de .JS bestanden naar de plaatsen waar de API wordt aangeroepen. (deze plekken zijn voorzien van comments met daarin API dit kan helpen met het vinden van deze regels).  
+(een voorbeeld is: https://1a2480b0-fd9b-48ad-bfa8-f417948043b0.mock.pstmn.io/t/clients/${clientId}/medical_notes)  
+3. in bovenstaand voorbeeld vervang alles behalve /t/clients/${clientId}/medical_notes voor de gekopieerde link van Postman.  
+5. als de postman serverdraait zal nu de applicatie de requests door sturen naar de nieuwe server.  
+
+## Structuur van de repository
+Client.html                     - De HTML voor het weergeven van de client gegevens.  
+Client.js                       - De Javascript voor het ophalen van alle nodige gegevens vanuit de API.  
+Login.html                      - De HTML pagina voor het inloggen.  
+Login.js                        - De javascript waarmee de login wordt gecontrolleert. dit verloopt via de API.  
+Scanner.html                    - de HTML pagina waarop de qr scanner staat.  
+Scanner.js                      - de javascript die die de functionaliteiten van de scanner bevat.  
+Styles.css                      - de CSS in de style van zorcentrum Anker.  
+ONS API.postman_collection.json - de geexporteerde mock API waar de applicatie op functioneerd.  
+
+
