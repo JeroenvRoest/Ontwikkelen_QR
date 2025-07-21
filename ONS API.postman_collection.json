@@ -1,0 +1,600 @@
+{
+	"info": {
+		"_postman_id": "4084c5e8-3aa9-4525-900a-b8cd0f36cb6c",
+		"name": "ONS API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "45331154",
+		"_collection_link": "https://jeroen-9352405.postman.co/workspace/ONS-api-mock~7543b332-3f9f-4e22-9de8-bd78fdf56ba2/collection/45331154-4084c5e8-3aa9-4525-900a-b8cd0f36cb6c?action=share&source=collection_link&creator=45331154"
+	},
+	"item": [
+		{
+			"name": "Method Get Client List",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "/t/clientList",
+					"path": [
+						"t",
+						"clientList"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Method Get Client List",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "/t/clientList",
+							"path": [
+								"t",
+								"clientList"
+							]
+						}
+					},
+					"_postman_previewlanguage": "",
+					"header": [],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "[\r\n{\r\n  \"id\": \"123\",\r\n  \"name\": \"Jan Jansen\",\r\n  \"roomNumber\": \"Kamer 101\"\r\n},\r\n{\r\n  \"id\": \"456\",\r\n  \"name\": \"Freek de Fries\",\r\n  \"roomNumber\": \"Kamer 200\"\r\n},\r\n{\r\n  \"id\": \"789\",\r\n  \"name\": \"Piet pieters\",\r\n  \"roomNumber\": \"Kamer 303\",\r\n\r\n}\r\n]"
+				}
+			]
+		},
+		{
+			"name": "get cliënt",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://1a2480b0-fd9b-48ad-bfa8-f417948043b0.mock.pstmn.io/t/client/:client_id",
+					"protocol": "https",
+					"host": [
+						"1a2480b0-fd9b-48ad-bfa8-f417948043b0",
+						"mock",
+						"pstmn",
+						"io"
+					],
+					"path": [
+						"t",
+						"client",
+						":client_id"
+					],
+					"variable": [
+						{
+							"key": "client_id",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "get cliënt 123",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://1a2480b0-fd9b-48ad-bfa8-f417948043b0.mock.pstmn.io/t/client/:client_id",
+							"protocol": "https",
+							"host": [
+								"1a2480b0-fd9b-48ad-bfa8-f417948043b0",
+								"mock",
+								"pstmn",
+								"io"
+							],
+							"path": [
+								"t",
+								"client",
+								":client_id"
+							],
+							"variable": [
+								{
+									"key": "client_id",
+									"value": "123"
+								}
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n  \"id\": \"123\",\r\n  \"name\": \"Jan Jansen\",\r\n  \"dateOfBirth\": \"1957-01-01\",\r\n  \"roomNumber\": \"Kamer 101\",\r\n  \"location\": \"Afdeling de Leede\",\r\n  \"Allergieën\": \"hooikoorts, Morfine\",\r\n  \"reanimeren\": \"Ja\"\r\n}"
+				},
+				{
+					"name": "get cliënt 456",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://1a2480b0-fd9b-48ad-bfa8-f417948043b0.mock.pstmn.io/t/client/:client_id",
+							"protocol": "https",
+							"host": [
+								"1a2480b0-fd9b-48ad-bfa8-f417948043b0",
+								"mock",
+								"pstmn",
+								"io"
+							],
+							"path": [
+								"t",
+								"client",
+								":client_id"
+							],
+							"variable": [
+								{
+									"key": "client_id",
+									"value": "456"
+								}
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n  \"id\": \"456\",\r\n  \"name\": \"Freek de Fries\",\r\n  \"dateOfBirth\": \"1955-01-01\",\r\n  \"roomNumber\": \"Kamer 200\",\r\n  \"location\": \"Afdeling zuid\",\r\n   \"reanimeren\": \"Ja\"\r\n}\r\n"
+				},
+				{
+					"name": "get cliënt 789",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://1a2480b0-fd9b-48ad-bfa8-f417948043b0.mock.pstmn.io/t/client/:client_id",
+							"protocol": "https",
+							"host": [
+								"1a2480b0-fd9b-48ad-bfa8-f417948043b0",
+								"mock",
+								"pstmn",
+								"io"
+							],
+							"path": [
+								"t",
+								"client",
+								":client_id"
+							],
+							"variable": [
+								{
+									"key": "client_id",
+									"value": "789"
+								}
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n  \"id\": \"789\",\r\n  \"name\": \"Piet pieters\",\r\n  \"dateOfBirth\": \"1960-03-01\"\r\n  \"roomNumber\": \"Kamer 303\",\r\n  \"location\": \"Afdeling zuid\",\r\n  \"Allergieën\": \"Zuivel\",\r\n   \"reanimeren\": \"Ja\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"username\": \"verpleegkundige\",\r\n  \"password\": \"wachtwoord\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://1a2480b0-fd9b-48ad-bfa8-f417948043b0.mock.pstmn.io/t/login",
+					"protocol": "https",
+					"host": [
+						"1a2480b0-fd9b-48ad-bfa8-f417948043b0",
+						"mock",
+						"pstmn",
+						"io"
+					],
+					"path": [
+						"t",
+						"login"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "login succes",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"username\": \"verpleegkundige\",\r\n  \"password\": \"wachtwoord\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://1a2480b0-fd9b-48ad-bfa8-f417948043b0.mock.pstmn.io/t/login",
+							"protocol": "https",
+							"host": [
+								"1a2480b0-fd9b-48ad-bfa8-f417948043b0",
+								"mock",
+								"pstmn",
+								"io"
+							],
+							"path": [
+								"t",
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "",
+					"header": [],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\r\n  \"token\": \"abc123\",\r\n  \"user\": {\r\n    \"id\": \"user001\",\r\n    \"name\": \"Verpleegkundige01\",\r\n    \"role\": \"verpleegkundige\"\r\n  }\r\n}\r\n"
+				}
+			]
+		},
+		{
+			"name": "medical_notes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://1a2480b0-fd9b-48ad-bfa8-f417948043b0.mock.pstmn.io/t/clients/:client_id/medical_notes",
+					"protocol": "https",
+					"host": [
+						"1a2480b0-fd9b-48ad-bfa8-f417948043b0",
+						"mock",
+						"pstmn",
+						"io"
+					],
+					"path": [
+						"t",
+						"clients",
+						":client_id",
+						"medical_notes"
+					],
+					"variable": [
+						{
+							"key": "client_id",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "medical_notes_123",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://1a2480b0-fd9b-48ad-bfa8-f417948043b0.mock.pstmn.io/t/clients/:client_id/medical_notes",
+							"protocol": "https",
+							"host": [
+								"1a2480b0-fd9b-48ad-bfa8-f417948043b0",
+								"mock",
+								"pstmn",
+								"io"
+							],
+							"path": [
+								"t",
+								"clients",
+								":client_id",
+								"medical_notes"
+							],
+							"variable": [
+								{
+									"key": "client_id",
+									"value": "123"
+								}
+							]
+						}
+					},
+					"_postman_previewlanguage": "",
+					"header": [],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\r\n  \"medicalNotes\": [\r\n    {\r\n      \"id\": 1,\r\n      \"content\": \"Dummy note for client 123\",\r\n      \"visibleOnWorksheet\": true,\r\n      \"deleted\": false,\r\n      \"startDate\": \"2023-06-01\",\r\n      \"endDate\": \"2023-06-30\",\r\n      \"updatedByAuthorId\": 5,\r\n      \"authorId\": 5,\r\n      \"updatedAt\": \"2023-06-15T10:00:00.000+02:00\",\r\n      \"createdAt\": \"2023-06-01T09:00:00.000+02:00\",\r\n      \"createdBy\": \"Dr. Smith\",\r\n      \"clientId\": 1\r\n    },\r\n    {\r\n      \"id\": 2,\r\n      \"content\": \"Dummy note for client 123\",\r\n      \"visibleOnWorksheet\": true,\r\n      \"deleted\": true,\r\n      \"startDate\": \"2023-06-01\",\r\n      \"endDate\": \"2023-06-30\",\r\n      \"updatedByAuthorId\": 5,\r\n      \"authorId\": 5,\r\n      \"updatedAt\": \"2023-06-15T10:00:00.000+02:00\",\r\n      \"createdAt\": \"2023-06-01T09:00:00.000+02:00\",\r\n      \"createdBy\": \"Dr. Smith\",\r\n      \"clientId\": 1\r\n    },\r\n     {\r\n      \"id\": 3,\r\n      \"content\": \"Dummy note for client 123\",\r\n      \"visibleOnWorksheet\": true,\r\n      \"deleted\": false,\r\n      \"startDate\": \"2023-06-01\",\r\n      \"endDate\": \"2023-06-30\",\r\n      \"updatedByAuthorId\": 5,\r\n      \"authorId\": 5,\r\n      \"updatedAt\": \"2023-06-15T10:00:00.000+02:00\",\r\n      \"createdAt\": \"2023-06-01T09:00:00.000+02:00\",\r\n      \"createdBy\": \"Dr. Smith\",\r\n      \"clientId\": 1\r\n    }\r\n  ]\r\n}\r\n"
+				},
+				{
+					"name": "medical_notes_456",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://1a2480b0-fd9b-48ad-bfa8-f417948043b0.mock.pstmn.io/t/clients/:client_id/medical_notes",
+							"protocol": "https",
+							"host": [
+								"1a2480b0-fd9b-48ad-bfa8-f417948043b0",
+								"mock",
+								"pstmn",
+								"io"
+							],
+							"path": [
+								"t",
+								"clients",
+								":client_id",
+								"medical_notes"
+							],
+							"variable": [
+								{
+									"key": "client_id",
+									"value": "456"
+								}
+							]
+						}
+					},
+					"_postman_previewlanguage": "",
+					"header": [],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\r\n  \"medicalNotes\": [\r\n    {\r\n      \"id\": 1,\r\n      \"content\": \"Dummy note for client 456\",\r\n      \"visibleOnWorksheet\": true,\r\n      \"deleted\": false,\r\n      \"startDate\": \"2023-06-01\",\r\n      \"endDate\": \"2023-06-30\",\r\n      \"updatedByAuthorId\": 5,\r\n      \"authorId\": 5,\r\n      \"updatedAt\": \"2023-06-15T10:00:00.000+02:00\",\r\n      \"createdAt\": \"2023-06-01T09:00:00.000+02:00\",\r\n      \"createdBy\": \"Dr. Smith\",\r\n      \"clientId\": 1\r\n    }\r\n  ]\r\n}\r\n"
+				},
+				{
+					"name": "medical_notes_789",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://1a2480b0-fd9b-48ad-bfa8-f417948043b0.mock.pstmn.io/t/clients/:client_id/medical_notes",
+							"protocol": "https",
+							"host": [
+								"1a2480b0-fd9b-48ad-bfa8-f417948043b0",
+								"mock",
+								"pstmn",
+								"io"
+							],
+							"path": [
+								"t",
+								"clients",
+								":client_id",
+								"medical_notes"
+							],
+							"variable": [
+								{
+									"key": "client_id",
+									"value": "789"
+								}
+							]
+						}
+					},
+					"_postman_previewlanguage": "",
+					"header": [],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\r\n  \"medicalNotes\": [\r\n    {\r\n      \"id\": 1,\r\n      \"content\": \"Dummy note for client 789\",\r\n      \"visibleOnWorksheet\": true,\r\n      \"deleted\": false,\r\n      \"startDate\": \"2023-06-01\",\r\n      \"endDate\": \"2023-06-30\",\r\n      \"updatedByAuthorId\": 5,\r\n      \"authorId\": 5,\r\n      \"updatedAt\": \"2023-06-15T10:00:00.000+02:00\",\r\n      \"createdAt\": \"2023-06-01T09:00:00.000+02:00\",\r\n      \"createdBy\": \"Dr. Smith\",\r\n      \"clientId\": 1\r\n    }\r\n  ]\r\n}\r\n"
+				}
+			]
+		},
+		{
+			"name": "get reports",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://1a2480b0-fd9b-48ad-bfa8-f417948043b0.mock.pstmn.io/t/dossier/reports/:Client_id",
+					"protocol": "https",
+					"host": [
+						"1a2480b0-fd9b-48ad-bfa8-f417948043b0",
+						"mock",
+						"pstmn",
+						"io"
+					],
+					"path": [
+						"t",
+						"dossier",
+						"reports",
+						":Client_id"
+					],
+					"variable": [
+						{
+							"key": "Client_id",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "get reports",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://1a2480b0-fd9b-48ad-bfa8-f417948043b0.mock.pstmn.io/t/dossier/reports/:Client_id",
+							"protocol": "https",
+							"host": [
+								"1a2480b0-fd9b-48ad-bfa8-f417948043b0",
+								"mock",
+								"pstmn",
+								"io"
+							],
+							"path": [
+								"t",
+								"dossier",
+								"reports",
+								":Client_id"
+							],
+							"variable": [
+								{
+									"key": "Client_id",
+									"value": "123"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "",
+					"header": [],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\r\n  \"reports\": [\r\n    {\r\n      \"updatedAt\": \"2014-04-01T17:00:00.000+02:00\",\r\n      \"createdAt\": \"2013-12-01T17:00:00.000+01:00\",\r\n      \"id\": 1,\r\n      \"reportingDate\": \"2014-04-01T17:00:00.000+02:00\",\r\n      \"comment\": \"meneer rook vanmiddag naar alocohol, blijkbaar weet hij toch aan drank te komen. Kamer nalopen op verborgen drank.\",\r\n      \"flagged\": true,\r\n      \"confidential\": false,\r\n      \"hidden\": false,\r\n      \"parentType\": \"presencelog\",\r\n      \"carenId\": 10,\r\n      \"carenName\": \"Foeken\",\r\n      \"carenRole\": \"verpleegkundige\",\r\n      \"status\": 1,\r\n      \"reportTypeId\": 101\r\n    },\r\n    {\r\n      \"updatedAt\": \"2014-04-01T17:00:00.000+02:00\",\r\n      \"createdAt\": \"2013-12-01T17:00:00.000+01:00\",\r\n      \"id\": 2,\r\n      \"reportingDate\": \"2014-04-01T17:00:00.000+02:00\",\r\n      \"comment\": \"Goed geplast\",\r\n      \"flagged\": true,\r\n      \"confidential\": false,\r\n      \"hidden\": false,\r\n      \"parentType\": \"presencelog\",\r\n      \"carenId\": 10,\r\n      \"carenName\": \"Foeken\",\r\n      \"carenRole\": \"verpleegkundige\",\r\n      \"status\": 1,\r\n      \"reportTypeId\": 101\r\n    }\r\n  ]\r\n}"
+				},
+				{
+					"name": "get reports Copy",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://1a2480b0-fd9b-48ad-bfa8-f417948043b0.mock.pstmn.io/t/dossier/reports/:Client_id",
+							"protocol": "https",
+							"host": [
+								"1a2480b0-fd9b-48ad-bfa8-f417948043b0",
+								"mock",
+								"pstmn",
+								"io"
+							],
+							"path": [
+								"t",
+								"dossier",
+								"reports",
+								":Client_id"
+							],
+							"variable": [
+								{
+									"key": "Client_id",
+									"value": "456"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "",
+					"header": [],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\r\n    \"reports\": [\r\n    {\r\n      \"updatedAt\": \"2014-04-01T17:00:00.000+02:00\",\r\n      \"createdAt\": \"2013-12-01T17:00:00.000+01:00\",\r\n      \"id\": 1,\r\n      \"reportingDate\": \"2014-04-01T17:00:00.000+02:00\",\r\n      \"comment\": \"Mevrouw rook vanmiddag naar alocohol, blijkbaar weet ze toch aan drank te komen. Kamer nalopen op verborgen drank.\",\r\n      \"flagged\": true,\r\n      \"confidential\": false,\r\n      \"hidden\": false,\r\n      \"parentType\": \"presencelog\",\r\n      \"carenId\": 10,\r\n      \"carenName\": \"Foeken\",\r\n      \"carenRole\": \"Mantelzorger\",\r\n      \"status\": 1,\r\n      \"reportTypeId\": 101\r\n    }\r\n]\r\n}"
+				}
+			]
+		},
+		{
+			"name": "get emergency Contact",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://1a2480b0-fd9b-48ad-bfa8-f417948043b0.mock.pstmn.io/t/client_contact_relations/:Client_id",
+					"protocol": "https",
+					"host": [
+						"1a2480b0-fd9b-48ad-bfa8-f417948043b0",
+						"mock",
+						"pstmn",
+						"io"
+					],
+					"path": [
+						"t",
+						"client_contact_relations",
+						":Client_id"
+					],
+					"variable": [
+						{
+							"key": "Client_id",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "get emergency Contact",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://1a2480b0-fd9b-48ad-bfa8-f417948043b0.mock.pstmn.io/t/client_contact_relations/:Client_id",
+							"protocol": "https",
+							"host": [
+								"1a2480b0-fd9b-48ad-bfa8-f417948043b0",
+								"mock",
+								"pstmn",
+								"io"
+							],
+							"path": [
+								"t",
+								"client_contact_relations",
+								":Client_id"
+							],
+							"variable": [
+								{
+									"key": "Client_id",
+									"value": "123"
+								}
+							]
+						}
+					},
+					"_postman_previewlanguage": "",
+					"header": [],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\r\n  \"contacts\": [\r\n    {\r\n      \"updatedAt\": \"2014-04-17T16:04:36.000+02:00\",\r\n      \"createdAt\": \"2014-04-17T16:04:36.000+02:00\",\r\n      \"createdBy\": \"user\",\r\n      \"id\": 10310,\r\n      \"firstName\": \"Wil\",\r\n      \"name\": \"Mw. MMT 05-11-86\",\r\n      \"identificationNo\": \"code\",\r\n      \"preferredNameType\": \"0\",\r\n      \"lastName\": \"Jansen-Niemeijer\",\r\n      \"birthName\": \"Jansen\",\r\n      \"partnerName\": \"Niemeijer\",\r\n      \"initials\": \"MMT\",\r\n      \"prefix\": \"\",\r\n      \"birthNamePrefix\": \"\",\r\n      \"partnerNamePrefix\": \"\",\r\n      \"gender\": \"F\",\r\n      \"clientObjectId\": 30259,\r\n      \"bsn\": {\r\n        \"id\": 1,\r\n        \"clientId\": 1,\r\n        \"number\": \"example\",\r\n        \"sourceVerified\": true,\r\n        \"idVerified\": true,\r\n        \"idNumber\": \"example\",\r\n        \"idType\": \"example\",\r\n        \"source\": \"example\",\r\n        \"idVerifiedType\": \"example\",\r\n        \"idVerifiedDate\": \"2014-12-29T00:00:00.000+01:00\",\r\n        \"bsnUnknown\": true,\r\n        \"reasonBsnUnknown\": \"example\",\r\n        \"idValidUntil\": \"2014-12-29\",\r\n        \"bsnVerifiedDate\": \"2014-12-29\",\r\n        \"widVerified\": true,\r\n        \"verifiedByEmployeeId\": 1,\r\n        \"bsnDocumentType\": 0,\r\n        \"bsnSource\": -1,\r\n        \"bsnIdVerifiedType\": 0\r\n      },\r\n      \"clientContactRelationType\": {\r\n        \"id\": 1,\r\n        \"name\": \"example\",\r\n        \"tag\": \"example\",\r\n        \"primary\": true,\r\n        \"exclusive\": true,\r\n        \"relevant\": true,\r\n        \"negative\": true,\r\n        \"active\": true,\r\n        \"legal\": true,\r\n        \"vbmResponsible\": true,\r\n        \"vektisCode\": 1,\r\n        \"reference\": 1,\r\n        \"relationCategory\": {\r\n          \"updatedAt\": \"2014-12-29T00:00:00.000+01:00\",\r\n          \"createdAt\": \"2014-12-29T00:00:00.000+01:00\",\r\n          \"createdBy\": \"example\",\r\n          \"id\": 1,\r\n          \"name\": \"example\",\r\n          \"type\": \"example\"\r\n        },\r\n        \"updatedAt\": \"2014-12-29T00:00:00.000+01:00\",\r\n        \"createdAt\": \"2014-12-29T00:00:00.000+01:00\",\r\n        \"createdBy\": \"example\"\r\n      },\r\n      \"clientContactRelationTypeObjectId\": 1,\r\n      \"personalRelationType\": {\r\n        \"id\": 1,\r\n        \"name\": \"example\",\r\n        \"tag\": \"example\",\r\n        \"primary\": true,\r\n        \"exclusive\": true,\r\n        \"relevant\": true,\r\n        \"negative\": true,\r\n        \"active\": true,\r\n        \"legal\": true,\r\n        \"vbmResponsible\": true,\r\n        \"vektisCode\": 1,\r\n        \"reference\": 1,\r\n        \"relationCategory\": {\r\n          \"updatedAt\": \"2014-12-29T00:00:00.000+01:00\",\r\n          \"createdAt\": \"2014-12-29T00:00:00.000+01:00\",\r\n          \"createdBy\": \"example\",\r\n          \"id\": 1,\r\n          \"name\": \"example\",\r\n          \"type\": \"example\",\r\n\t  \"contactInfo\": \"0612345679\"\r\n        },\r\n        \"updatedAt\": \"2014-12-29T00:00:00.000+01:00\",\r\n        \"createdAt\": \"2014-12-29T00:00:00.000+01:00\",\r\n        \"createdBy\": \"example\"\r\n      },\r\n      \"personalRelationTypeObjectId\": 2,\r\n      \"organization\": \"Nedap\",\r\n      \"inCaseOfEmergency\": false,\r\n      \"comments\": \"Casemanager komt 1 keer per maand\"\r\n    },\r\n    {\r\n      \"updatedAt\": \"2014-05-01T10:00:00.000+02:00\",\r\n      \"createdAt\": \"2014-05-01T10:00:00.000+02:00\",\r\n      \"createdBy\": \"user\",\r\n      \"id\": 10311,\r\n      \"firstName\": \"Jan\",\r\n      \"name\": \"Dhr. Jan Contact\",\r\n      \"identificationNo\": \"code2\",\r\n      \"preferredNameType\": \"0\",\r\n      \"lastName\": \"Contact\",\r\n      \"birthName\": \"Contact\",\r\n      \"partnerName\": \"\",\r\n      \"initials\": \"JC\",\r\n      \"prefix\": \"\",\r\n      \"birthNamePrefix\": \"\",\r\n      \"partnerNamePrefix\": \"\",\r\n      \"gender\": \"M\",\r\n      \"clientObjectId\": 30259,\r\n      \"bsn\": {\r\n        \"id\": 2,\r\n        \"clientId\": 1,\r\n        \"number\": \"example2\",\r\n        \"sourceVerified\": true,\r\n        \"idVerified\": true,\r\n        \"idNumber\": \"example2\",\r\n        \"idType\": \"example\",\r\n        \"source\": \"example\",\r\n        \"idVerifiedType\": \"example\",\r\n        \"idVerifiedDate\": \"2014-12-30T00:00:00.000+01:00\",\r\n        \"bsnUnknown\": false,\r\n        \"reasonBsnUnknown\": \"\",\r\n        \"idValidUntil\": \"2015-12-30\",\r\n        \"bsnVerifiedDate\": \"2014-12-30\",\r\n        \"widVerified\": true,\r\n        \"verifiedByEmployeeId\": 2,\r\n        \"bsnDocumentType\": 1,\r\n        \"bsnSource\": 0,\r\n        \"bsnIdVerifiedType\": 1\r\n      },\r\n      \"clientContactRelationType\": {\r\n        \"id\": 2,\r\n        \"name\": \"familielid\",\r\n        \"tag\": \"family\",\r\n        \"primary\": false,\r\n        \"exclusive\": false,\r\n        \"relevant\": true,\r\n        \"negative\": false,\r\n        \"active\": true,\r\n        \"legal\": false,\r\n        \"vbmResponsible\": false,\r\n        \"vektisCode\": 2,\r\n        \"reference\": 2,\r\n        \"relationCategory\": {\r\n          \"updatedAt\": \"2014-12-30T00:00:00.000+01:00\",\r\n          \"createdAt\": \"2014-12-30T00:00:00.000+01:00\",\r\n          \"createdBy\": \"user\",\r\n          \"id\": 2,\r\n          \"name\": \"familielid\",\r\n          \"type\": \"persoonlijk\"\r\n        },\r\n        \"updatedAt\": \"2014-12-30T00:00:00.000+01:00\",\r\n        \"createdAt\": \"2014-12-30T00:00:00.000+01:00\",\r\n        \"createdBy\": \"user\"\r\n      },\r\n      \"clientContactRelationTypeObjectId\": 2,\r\n      \"personalRelationType\": {\r\n        \"id\": 2,\r\n        \"name\": \"familielid\",\r\n        \"tag\": \"family\",\r\n        \"primary\": false,\r\n        \"exclusive\": false,\r\n        \"relevant\": true,\r\n        \"negative\": false,\r\n        \"active\": true,\r\n        \"legal\": false,\r\n        \"vbmResponsible\": false,\r\n        \"vektisCode\": 2,\r\n        \"reference\": 2,\r\n        \"relationCategory\": {\r\n          \"updatedAt\": \"2014-12-30T00:00:00.000+01:00\",\r\n          \"createdAt\": \"2014-12-30T00:00:00.000+01:00\",\r\n          \"createdBy\": \"user\",\r\n          \"id\": 2,\r\n          \"name\": \"familielid\",\r\n          \"type\": \"persoonlijk\",\r\n\t  \"contactInfo\": \"0612345678\"\r\n        },\r\n        \"updatedAt\": \"2014-12-30T00:00:00.000+01:00\",\r\n        \"createdAt\": \"2014-12-30T00:00:00.000+01:00\",\r\n        \"createdBy\": \"user\"\r\n      },\r\n      \"personalRelationTypeObjectId\": 2,\r\n      \"organization\": \"Familie\",\r\n      \"inCaseOfEmergency\": true,\r\n      \"comments\": \"Noodcontactpersoon\"\r\n    }\r\n  ]\r\n}\r\n"
+				},
+				{
+					"name": "get emergency Contact",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://1a2480b0-fd9b-48ad-bfa8-f417948043b0.mock.pstmn.io/t/client_contact_relations/:Client_id",
+							"protocol": "https",
+							"host": [
+								"1a2480b0-fd9b-48ad-bfa8-f417948043b0",
+								"mock",
+								"pstmn",
+								"io"
+							],
+							"path": [
+								"t",
+								"client_contact_relations",
+								":Client_id"
+							],
+							"variable": [
+								{
+									"key": "Client_id",
+									"value": "456"
+								}
+							]
+						}
+					},
+					"_postman_previewlanguage": "",
+					"header": [],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\r\n  \"contacts\": [\r\n    {\r\n      \"updatedAt\": \"2014-04-17T16:04:36.000+02:00\",\r\n      \"createdAt\": \"2014-04-17T16:04:36.000+02:00\",\r\n      \"createdBy\": \"user\",\r\n      \"id\": 10310,\r\n      \"firstName\": \"Wil\",\r\n      \"name\": \"Mw. MMT 05-11-86\",\r\n      \"identificationNo\": \"code\",\r\n      \"preferredNameType\": \"0\",\r\n      \"lastName\": \"Jansen-Niemeijer\",\r\n      \"birthName\": \"Jansen\",\r\n      \"partnerName\": \"Niemeijer\",\r\n      \"initials\": \"MMT\",\r\n      \"prefix\": \"\",\r\n      \"birthNamePrefix\": \"\",\r\n      \"partnerNamePrefix\": \"\",\r\n      \"gender\": \"F\",\r\n      \"clientObjectId\": 30259,\r\n      \"bsn\": {\r\n        \"id\": 1,\r\n        \"clientId\": 1,\r\n        \"number\": \"example\",\r\n        \"sourceVerified\": true,\r\n        \"idVerified\": true,\r\n        \"idNumber\": \"example\",\r\n        \"idType\": \"example\",\r\n        \"source\": \"example\",\r\n        \"idVerifiedType\": \"example\",\r\n        \"idVerifiedDate\": \"2014-12-29T00:00:00.000+01:00\",\r\n        \"bsnUnknown\": true,\r\n        \"reasonBsnUnknown\": \"example\",\r\n        \"idValidUntil\": \"2014-12-29\",\r\n        \"bsnVerifiedDate\": \"2014-12-29\",\r\n        \"widVerified\": true,\r\n        \"verifiedByEmployeeId\": 1,\r\n        \"bsnDocumentType\": 0,\r\n        \"bsnSource\": -1,\r\n        \"bsnIdVerifiedType\": 0\r\n      },\r\n      \"clientContactRelationType\": {\r\n        \"id\": 1,\r\n        \"name\": \"example\",\r\n        \"tag\": \"example\",\r\n        \"primary\": true,\r\n        \"exclusive\": true,\r\n        \"relevant\": true,\r\n        \"negative\": true,\r\n        \"active\": true,\r\n        \"legal\": true,\r\n        \"vbmResponsible\": true,\r\n        \"vektisCode\": 1,\r\n        \"reference\": 1,\r\n        \"relationCategory\": {\r\n          \"updatedAt\": \"2014-12-29T00:00:00.000+01:00\",\r\n          \"createdAt\": \"2014-12-29T00:00:00.000+01:00\",\r\n          \"createdBy\": \"example\",\r\n          \"id\": 1,\r\n          \"name\": \"example\",\r\n          \"type\": \"example\"\r\n        },\r\n        \"updatedAt\": \"2014-12-29T00:00:00.000+01:00\",\r\n        \"createdAt\": \"2014-12-29T00:00:00.000+01:00\",\r\n        \"createdBy\": \"example\"\r\n      },\r\n      \"clientContactRelationTypeObjectId\": 1,\r\n      \"personalRelationType\": {\r\n        \"id\": 1,\r\n        \"name\": \"example\",\r\n        \"tag\": \"example\",\r\n        \"primary\": true,\r\n        \"exclusive\": true,\r\n        \"relevant\": true,\r\n        \"negative\": true,\r\n        \"active\": true,\r\n        \"legal\": true,\r\n        \"vbmResponsible\": true,\r\n        \"vektisCode\": 1,\r\n        \"reference\": 1,\r\n        \"relationCategory\": {\r\n          \"updatedAt\": \"2014-12-29T00:00:00.000+01:00\",\r\n          \"createdAt\": \"2014-12-29T00:00:00.000+01:00\",\r\n          \"createdBy\": \"example\",\r\n          \"id\": 1,\r\n          \"name\": \"example\",\r\n          \"type\": \"example\",\r\n\t  \"contactInfo\": \"0612345679\"\r\n        },\r\n        \"updatedAt\": \"2014-12-29T00:00:00.000+01:00\",\r\n        \"createdAt\": \"2014-12-29T00:00:00.000+01:00\",\r\n        \"createdBy\": \"example\"\r\n      },\r\n      \"personalRelationTypeObjectId\": 2,\r\n      \"organization\": \"Nedap\",\r\n      \"inCaseOfEmergency\": false,\r\n      \"comments\": \"Casemanager komt 1 keer per maand\"\r\n    },\r\n    {\r\n      \"updatedAt\": \"2014-05-01T10:00:00.000+02:00\",\r\n      \"createdAt\": \"2014-05-01T10:00:00.000+02:00\",\r\n      \"createdBy\": \"user\",\r\n      \"id\": 10311,\r\n      \"firstName\": \"Klaas\",\r\n      \"name\": \"Dhr. Klaas Contact\",\r\n      \"identificationNo\": \"code2\",\r\n      \"preferredNameType\": \"0\",\r\n      \"lastName\": \"Contact\",\r\n      \"birthName\": \"Contact\",\r\n      \"partnerName\": \"\",\r\n      \"initials\": \"JC\",\r\n      \"prefix\": \"\",\r\n      \"birthNamePrefix\": \"\",\r\n      \"partnerNamePrefix\": \"\",\r\n      \"gender\": \"M\",\r\n      \"clientObjectId\": 30259,\r\n      \"bsn\": {\r\n        \"id\": 2,\r\n        \"clientId\": 1,\r\n        \"number\": \"example2\",\r\n        \"sourceVerified\": true,\r\n        \"idVerified\": true,\r\n        \"idNumber\": \"example2\",\r\n        \"idType\": \"example\",\r\n        \"source\": \"example\",\r\n        \"idVerifiedType\": \"example\",\r\n        \"idVerifiedDate\": \"2014-12-30T00:00:00.000+01:00\",\r\n        \"bsnUnknown\": false,\r\n        \"reasonBsnUnknown\": \"\",\r\n        \"idValidUntil\": \"2015-12-30\",\r\n        \"bsnVerifiedDate\": \"2014-12-30\",\r\n        \"widVerified\": true,\r\n        \"verifiedByEmployeeId\": 2,\r\n        \"bsnDocumentType\": 1,\r\n        \"bsnSource\": 0,\r\n        \"bsnIdVerifiedType\": 1\r\n      },\r\n      \"clientContactRelationType\": {\r\n        \"id\": 2,\r\n        \"name\": \"familielid\",\r\n        \"tag\": \"family\",\r\n        \"primary\": false,\r\n        \"exclusive\": false,\r\n        \"relevant\": true,\r\n        \"negative\": false,\r\n        \"active\": true,\r\n        \"legal\": false,\r\n        \"vbmResponsible\": false,\r\n        \"vektisCode\": 2,\r\n        \"reference\": 2,\r\n        \"relationCategory\": {\r\n          \"updatedAt\": \"2014-12-30T00:00:00.000+01:00\",\r\n          \"createdAt\": \"2014-12-30T00:00:00.000+01:00\",\r\n          \"createdBy\": \"user\",\r\n          \"id\": 2,\r\n          \"name\": \"familielid\",\r\n          \"type\": \"persoonlijk\"\r\n        },\r\n        \"updatedAt\": \"2014-12-30T00:00:00.000+01:00\",\r\n        \"createdAt\": \"2014-12-30T00:00:00.000+01:00\",\r\n        \"createdBy\": \"user\"\r\n      },\r\n      \"clientContactRelationTypeObjectId\": 2,\r\n      \"personalRelationType\": {\r\n        \"id\": 2,\r\n        \"name\": \"familielid\",\r\n        \"tag\": \"family\",\r\n        \"primary\": false,\r\n        \"exclusive\": false,\r\n        \"relevant\": true,\r\n        \"negative\": false,\r\n        \"active\": true,\r\n        \"legal\": false,\r\n        \"vbmResponsible\": false,\r\n        \"vektisCode\": 2,\r\n        \"reference\": 2,\r\n        \"relationCategory\": {\r\n          \"updatedAt\": \"2014-12-30T00:00:00.000+01:00\",\r\n          \"createdAt\": \"2014-12-30T00:00:00.000+01:00\",\r\n          \"createdBy\": \"user\",\r\n          \"id\": 2,\r\n          \"name\": \"familielid\",\r\n          \"type\": \"persoonlijk\",\r\n\t  \"contactInfo\": \"0612345678\"\r\n        },\r\n        \"updatedAt\": \"2014-12-30T00:00:00.000+01:00\",\r\n        \"createdAt\": \"2014-12-30T00:00:00.000+01:00\",\r\n        \"createdBy\": \"user\"\r\n      },\r\n      \"personalRelationTypeObjectId\": 2,\r\n      \"organization\": \"Familie\",\r\n      \"inCaseOfEmergency\": true,\r\n      \"comments\": \"Noodcontactpersoon\"\r\n    }\r\n  ]\r\n}\r\n"
+				}
+			]
+		}
+	]
+}
