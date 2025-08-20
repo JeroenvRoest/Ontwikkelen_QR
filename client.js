@@ -1,3 +1,22 @@
+function fetchWithAuth(url, options = {}) {
+  const token = localStorage.getItem('token');
+
+  // Voegt d e token toe aan de headers
+  const fetchOptions = {
+    ...options,
+    headers: {
+      ...(options.headers || {}),
+      'Authorization': `Bearer ${token}`,
+    }
+  };
+
+  return fetch(url, fetchOptions)
+    .then(res => {
+      if (!res.ok) throw new Error(`API error: ${res.status}`);
+      return res.json();
+    });
+}
+
 
 function getClientIdFromURL() {
   const params = new URLSearchParams(window.location.search);
@@ -6,13 +25,10 @@ function getClientIdFromURL() {
 
 function loadClientData(clientId) {
   //gegevens ophalen via API
-  fetch(
+  fetchWithAuth(
     `${API_URL}/t/client/${clientId}`
   )
-    .then((res) => {
-      if (!res.ok) throw new Error("Geen geldige response");
-      return res.json();
-    })
+    
     .then((data) => {
       document.getElementById("name").innerText = data.name || "Onbekend";
       document.getElementById("clientId").innerText = data.id || "Onbekend";
@@ -73,13 +89,10 @@ function fetchMedicalNotes(clientId) {
   notesContainer.innerHTML = "Bezig met laden...";
 
   // API medical_notes
-  fetch(
+  fetchWithAuth(
     `${API_URL}/t/clients/${clientId}/medical_notes`
   )
-    .then((res) => {
-      if (!res.ok) throw new Error("Fout bij ophalen medische notities");
-      return res.json();
-    })
+    
     .then((data) => {
       if (!data.medicalNotes || data.medicalNotes.length === 0) {
         notesContainer.innerHTML = "Geen medische notities gevonden.";
@@ -123,11 +136,8 @@ function fetchReportsByClient(clientId) {
   const url = `${API_URL}/t/dossier/reports/${clientId}`;
 
   //ophalen rapportages
-  fetch(url)
-    .then((res) => {
-      if (!res.ok) throw new Error("Fout bij ophalen rapportages");
-      return res.json();
-    })
+  fetchWithAuth(url)
+    
     //alles er geen rapportatges zijn
     .then((data) => {
       if (!data.reports || data.reports.length === 0) {
@@ -170,13 +180,9 @@ function fetchEmergencyContact(clientId) {
   container.innerHTML = "Bezig met laden...";
 
   // Vraag de data op bij de API
-  return fetch(url)
-    .then((res) => {
-      // Controleer of het antwoord OK is, anders gooi een fout
-      if (!res.ok)
-        throw new Error(`Fout bij ophalen contactgegevens: ${res.statusText}`);
-      return res.json();
-    })
+  return fetchWithAuth(url)
+    
+    
     .then((data) => {
       const contactsArray = data.contacts;
 

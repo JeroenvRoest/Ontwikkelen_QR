@@ -29,6 +29,7 @@
         localStorage.setItem('user', JSON.stringify(data.user));
         localStorage.setItem('token', data.token);
 
+        console.log("Token opgeslagen:", localStorage.getItem('token'));
         // ga naar scanner pagina
         window.location.href = 'scanner.html';
 
