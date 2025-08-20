@@ -54,10 +54,8 @@ Klik op de drie puntjes (⋮) naast de geïmporteerde collectie "ONS API".
 Na het opzetten van de mockserver in Postman moet je de link in de HTML-code aanpassen zodat de applicatie gegevens ophaalt van de juiste API.
 
 Stappen:
-1. zoek in de .JS bestanden naar de plaatsen waar de API wordt aangeroepen. (deze plekken zijn voorzien van comments met daarin API dit kan helpen met het vinden van deze regels).  
-(een voorbeeld is: https://1a2480b0-fd9b-48ad-bfa8-f417948043b0.mock.pstmn.io/t/clients/${clientId}/medical_notes)  
-3. in bovenstaand voorbeeld vervang alles behalve /t/clients/${clientId}/medical_notes voor de gekopieerde link van Postman.  
-5. als de postman serverdraait zal nu de applicatie de requests door sturen naar de nieuwe server.  
+1. vervang in Config.js de URL voor de nieuwe URL.  
+2. als de postman serverdraait zal nu de applicatie de requests door sturen naar de nieuwe server.  
 
 ## Structuur van de repository
 Client.html                     - De HTML voor het weergeven van de client gegevens.  
