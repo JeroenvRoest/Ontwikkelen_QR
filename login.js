@@ -12,7 +12,7 @@
 
       // probeert in te loggen via API
       try {
-        const response = await fetch('https://1a2480b0-fd9b-48ad-bfa8-f417948043b0.mock.pstmn.io/t/login', {
+        const response = await fetch(`${API_URL}/t/login`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ username, password })
