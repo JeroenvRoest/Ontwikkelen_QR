@@ -1,3 +1,4 @@
+
 function getClientIdFromURL() {
   const params = new URLSearchParams(window.location.search);
   return params.get("id");
@@ -6,7 +7,7 @@ function getClientIdFromURL() {
 function loadClientData(clientId) {
   //gegevens ophalen via API
   fetch(
-    `https://1a2480b0-fd9b-48ad-bfa8-f417948043b0.mock.pstmn.io/t/client/${clientId}`
+    `${API_URL}/t/client/${clientId}`
   )
     .then((res) => {
       if (!res.ok) throw new Error("Geen geldige response");
@@ -73,7 +74,7 @@ function fetchMedicalNotes(clientId) {
 
   // API medical_notes
   fetch(
-    `https://1a2480b0-fd9b-48ad-bfa8-f417948043b0.mock.pstmn.io/t/clients/${clientId}/medical_notes`
+    `${API_URL}/t/clients/${clientId}/medical_notes`
   )
     .then((res) => {
       if (!res.ok) throw new Error("Fout bij ophalen medische notities");
@@ -119,7 +120,7 @@ function fetchReportsByClient(clientId) {
   reportsContainer.innerHTML = "Bezig met laden...";
 
   // API rapportages
-  const url = `https://1a2480b0-fd9b-48ad-bfa8-f417948043b0.mock.pstmn.io/t/dossier/reports/${clientId}`;
+  const url = `${API_URL}/t/dossier/reports/${clientId}`;
 
   //ophalen rapportages
   fetch(url)
@@ -162,7 +163,7 @@ function fetchReportsByClient(clientId) {
 
 function fetchEmergencyContact(clientId) {
   // API URL
-  const url = `https://1a2480b0-fd9b-48ad-bfa8-f417948043b0.mock.pstmn.io/t/client_contact_relations/${clientId}`;
+  const url = `${API_URL}/t/client_contact_relations/${clientId}`;
   const container = document.getElementById("emergencyContact");
 
   // Geef feedback dat het aan het laden is
