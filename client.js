@@ -236,52 +236,96 @@ function fetchMedicalNotes(clientId) {
     });
 }
 
+// //oude code
+// function fetchReportsByClient(clientId) {
+//   const reportsContainer = document.getElementById("reports");
+//   reportsContainer.innerHTML = "Bezig met laden...";
 
+//   // API rapportages
+//   const url = `${API_URL}/t/dossier/reports/${clientId}`;
 
+//   //ophalen rapportages
+//   fetchWithAuth(url)
+    
+//     //alles er geen rapportatges zijn
+//     .then((data) => {
+//       if (!data.reports || data.reports.length === 0) {
+//         reportsContainer.innerHTML = "Geen rapportages gevonden.";
+//         return;
+//       }
 
+//       //weergegeven data rapportages
+//       let html = "<h4>Rapportages:</h4><ul>";
+//       data.reports.forEach((report) => {
+//         html += `<li>
+//           <strong>ID:</strong> ${report.id}<br/>
+//           <strong>Datum:</strong> ${new Date(
+//             report.reportingDate
+//           ).toLocaleDateString()}<br/>
+//           <strong>Commentaar:</strong> ${report.comment}<br/>
+//           <strong>Auteur:</strong> ${report.carenName} (${
+//           report.carenRole
+//         })<br/>
+//           <strong>Status:</strong> ${report.status}<br/>
+//           <strong>Rapporttype ID:</strong> ${report.reportTypeId}
+//         </li><br/>`;
+//       });
+//       html += "</ul>";
 
+//       reportsContainer.innerHTML = html;
+//     })
+//     .catch((err) => {
+//       console.error(err);
+//       reportsContainer.innerHTML = "Fout bij ophalen rapportages.";
+//     });
+// }
+
+// Ophalen van de rapportages
+function getReports(clientId) {
+  const url = `${API_URL}/t/dossier/reports/${clientId}`;
+  return fetchWithAuth(url);
+}
+
+// plaatsen van raportages naar de html
+function renderReports(reports, containerId = "reports") {
+  const container = document.getElementById(containerId);
+
+  if (!reports || reports.length === 0) {
+    container.innerHTML = "Geen rapportages gevonden.";
+    return;
+  }
+
+  let html = "<h4>Rapportages:</h4><ul>";
+  reports.forEach(report => {
+    html += `<li>
+      <strong>ID:</strong> ${report.id}<br/>
+      <strong>Datum:</strong> ${new Date(report.reportingDate).toLocaleDateString()}<br/>
+      <strong>Commentaar:</strong> ${report.comment}<br/>
+      <strong>Auteur:</strong> ${report.carenName} (${report.carenRole})<br/>
+      <strong>Status:</strong> ${report.status}<br/>
+      <strong>Rapporttype ID:</strong> ${report.reportTypeId}
+    </li><br/>`;
+  });
+  html += "</ul>";
+
+  container.innerHTML = html;
+}
+
+// Fetch reports
 function fetchReportsByClient(clientId) {
   const reportsContainer = document.getElementById("reports");
   reportsContainer.innerHTML = "Bezig met laden...";
 
-  // API rapportages
-  const url = `${API_URL}/t/dossier/reports/${clientId}`;
-
-  //ophalen rapportages
-  fetchWithAuth(url)
-    
-    //alles er geen rapportatges zijn
-    .then((data) => {
-      if (!data.reports || data.reports.length === 0) {
-        reportsContainer.innerHTML = "Geen rapportages gevonden.";
-        return;
-      }
-
-      //weergegeven data rapportages
-      let html = "<h4>Rapportages:</h4><ul>";
-      data.reports.forEach((report) => {
-        html += `<li>
-          <strong>ID:</strong> ${report.id}<br/>
-          <strong>Datum:</strong> ${new Date(
-            report.reportingDate
-          ).toLocaleDateString()}<br/>
-          <strong>Commentaar:</strong> ${report.comment}<br/>
-          <strong>Auteur:</strong> ${report.carenName} (${
-          report.carenRole
-        })<br/>
-          <strong>Status:</strong> ${report.status}<br/>
-          <strong>Rapporttype ID:</strong> ${report.reportTypeId}
-        </li><br/>`;
-      });
-      html += "</ul>";
-
-      reportsContainer.innerHTML = html;
+  getReports(clientId)
+    .then(data => {
+      renderReports(data.reports || []);
     })
-    .catch((err) => {
+    .catch(err => {
       console.error(err);
       reportsContainer.innerHTML = "Fout bij ophalen rapportages.";
     });
 }
+
 
 function fetchEmergencyContact(clientId) {
   // API URL
