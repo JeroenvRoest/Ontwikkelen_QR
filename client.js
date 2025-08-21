@@ -23,65 +23,126 @@ function getClientIdFromURL() {
   return params.get("id");
 }
 
-function loadClientData(clientId) {
-  //gegevens ophalen via API
-  fetchWithAuth(
-    `${API_URL}/t/client/${clientId}`
-  )
+// oude functie
+// function loadClientData(clientId) {
+//   //gegevens ophalen via API
+//   fetchWithAuth(
+//     `${API_URL}/t/client/${clientId}`
+//   )
     
-    .then((data) => {
-      document.getElementById("name").innerText = data.name || "Onbekend";
-      document.getElementById("clientId").innerText = data.id || "Onbekend";
-      document.getElementById("geboortedatum").innerText =
-        data.dateOfBirth || "Onbekend";
-      document.getElementById("kamernummer").innerText =
-        data.roomNumber || "Onbekend";
-      document.getElementById("afdeling").innerText =
-        data.location || "Onbekend";
-      document.getElementById("allergieën").innerText =
-        data.Allergieën || "Onbekend";
-      document.getElementById("reanimeren").innerText =
-        data.reanimeren || "Onbekend";
+//     .then((data) => {
+//       document.getElementById("name").innerText = data.name || "Onbekend";
+//       document.getElementById("clientId").innerText = data.id || "Onbekend";
+//       document.getElementById("geboortedatum").innerText =
+//         data.dateOfBirth || "Onbekend";
+//       document.getElementById("kamernummer").innerText =
+//         data.roomNumber || "Onbekend";
+//       document.getElementById("afdeling").innerText =
+//         data.location || "Onbekend";
+//       document.getElementById("allergieën").innerText =
+//         data.Allergieën || "Onbekend";
+//       document.getElementById("reanimeren").innerText =
+//         data.reanimeren || "Onbekend";
 
-      //Maak knoppen zichtbaar
-      document.getElementById("showNotesBtn").style.display = "inline-block";
-      document.getElementById("showReportsBtn").style.display = "inline-block";
-      document.getElementById("showEmergencyContactBtn").style.display =
-        "inline-block";
+//       //Maak knoppen zichtbaar
+//       document.getElementById("showNotesBtn").style.display = "inline-block";
+//       document.getElementById("showReportsBtn").style.display = "inline-block";
+//       document.getElementById("showEmergencyContactBtn").style.display =
+//         "inline-block";
 
-      // Event listeners voor knoppen
-      document.getElementById("showNotesBtn").onclick = () => {
-        const container = document.getElementById("medicalNotes");
-        if (container.innerHTML.trim()) {
-          container.innerHTML = "";
-        } else {
-          fetchMedicalNotes(data.id);
-        }
-      };
+//       // Event listeners voor knoppen
+//       document.getElementById("showNotesBtn").onclick = () => {
+//         const container = document.getElementById("medicalNotes");
+//         if (container.innerHTML.trim()) {
+//           container.innerHTML = "";
+//         } else {
+//           fetchMedicalNotes(data.id);
+//         }
+//       };
 
-      document.getElementById("showReportsBtn").onclick = () => {
-        const container = document.getElementById("reports");
-        if (container.innerHTML.trim()) {
-          container.innerHTML = "";
-        } else {
-          fetchReportsByClient(data.id);
-        }
-      };
+//       document.getElementById("showReportsBtn").onclick = () => {
+//         const container = document.getElementById("reports");
+//         if (container.innerHTML.trim()) {
+//           container.innerHTML = "";
+//         } else {
+//           fetchReportsByClient(data.id);
+//         }
+//       };
 
-      document.getElementById("showEmergencyContactBtn").onclick = () => {
-        const container = document.getElementById("emergencyContact");
-        if (container.innerHTML.trim()) {
-          container.innerHTML = "";
-        } else {
-          fetchEmergencyContact(data.id);
-        }
-      };
+//       document.getElementById("showEmergencyContactBtn").onclick = () => {
+//         const container = document.getElementById("emergencyContact");
+//         if (container.innerHTML.trim()) {
+//           container.innerHTML = "";
+//         } else {
+//           fetchEmergencyContact(data.id);
+//         }
+//       };
+//     })
+//     .catch((err) => {
+//       console.error(err);
+//       alert("Fout bij ophalen cliëntgegevens.");
+//     });
+// }
+
+// Haalt clientinformatie op uit de API
+function getClientData(clientId) {
+  return fetchWithAuth(`${API_URL}/t/client/${clientId}`);
+}
+
+// Rendert de clientinformatie in het client info blok
+function renderClientInfo(data) {
+  document.getElementById("name").innerText = data.name || "Onbekend";
+  document.getElementById("clientId").innerText = data.id || "Onbekend";
+  document.getElementById("geboortedatum").innerText = data.dateOfBirth || "Onbekend";
+  document.getElementById("kamernummer").innerText = data.roomNumber || "Onbekend";
+  document.getElementById("afdeling").innerText = data.location || "Onbekend";
+  document.getElementById("allergieën").innerText = data.Allergieën || "Onbekend";
+  document.getElementById("reanimeren").innerText = data.reanimeren || "Onbekend";
+}
+
+// setup van de knoppen
+function setupClientButtons(data) {
+  const notesBtn = document.getElementById("showNotesBtn");
+  const reportsBtn = document.getElementById("showReportsBtn");
+  const contactBtn = document.getElementById("showEmergencyContactBtn");
+
+  // Maak knoppen zichtbaar
+  notesBtn.style.display = "inline-block";
+  reportsBtn.style.display = "inline-block";
+  contactBtn.style.display = "inline-block";
+
+  // Event listeners
+  notesBtn.onclick = () => toggleContainer("medicalNotes", () => fetchMedicalNotes(data.id));
+  reportsBtn.onclick = () => toggleContainer("reports", () => fetchReportsByClient(data.id));
+  contactBtn.onclick = () => toggleContainer("emergencyContact", () => fetchEmergencyContact(data.id));
+}
+
+// Wisselt de inhoud van een container: leegt het als het gevuld is, anders voert het fetchFn uit
+function toggleContainer(containerId, fetchFn) {
+  const container = document.getElementById(containerId);
+  if (container.innerHTML.trim()) {
+    container.innerHTML = "";
+  } else {
+    fetchFn();
+  }
+}
+
+// Laadt clientgegevens op via de API en zet de UI en knoppen op
+function loadClientData(clientId) {
+  getClientData(clientId)
+    .then(data => {
+      renderClientInfo(data);
+      setupClientButtons(data);
     })
-    .catch((err) => {
+    .catch(err => {
       console.error(err);
       alert("Fout bij ophalen cliëntgegevens.");
     });
 }
+
+
+
+
 
 // medische notities ophalen
 function fetchMedicalNotes(clientId) {
