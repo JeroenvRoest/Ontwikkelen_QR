@@ -127,7 +127,7 @@ function toggleContainer(containerId, fetchFn) {
   }
 }
 
-// Laadt clientgegevens op via de API en zet de UI en knoppen op
+// Laad clientgegevens op via de API en zet de UI en knoppen op
 function loadClientData(clientId) {
   getClientData(clientId)
     .then(data => {
@@ -143,51 +143,102 @@ function loadClientData(clientId) {
 
 
 
+// oude functie
+// // medische notities ophalen
+// function fetchMedicalNotes(clientId) {
+//   const notesContainer = document.getElementById("medicalNotes");
+//   notesContainer.innerHTML = "Bezig met laden...";
 
-// medische notities ophalen
+//   // API medical_notes
+//   fetchWithAuth(
+//     `${API_URL}/t/clients/${clientId}/medical_notes`
+//   )
+    
+//     .then((data) => {
+//       if (!data.medicalNotes || data.medicalNotes.length === 0) {
+//         notesContainer.innerHTML = "Geen medische notities gevonden.";
+//         return;
+//       }
+
+//       // Maak een lijst van niet verwijderde notities
+//       let html = "<h4>Medische notities:</h4><ul>";
+//       const visibleNotes = data.medicalNotes.filter((note) => !note.deleted);
+
+//       if (visibleNotes.length === 0) {
+//         notesContainer.innerHTML = "Geen medische notities gevonden.";
+//         return;
+//       }
+
+//       visibleNotes.forEach((note) => {
+//         html += `<li><strong>ID:</strong> ${note.id}<br/>
+//                 <strong>Datum:</strong> ${note.startDate} - ${
+//           note.endDate || "nu"
+//         }<br/>
+//                 <strong>Inhoud:</strong> ${note.content}<br/>
+//                 <strong>Auteur:</strong> ${
+//                   note.createdBy || note.authorId
+//                 }</li><br/>`;
+//       });
+//       html += "</ul>";
+//       notesContainer.innerHTML = html;
+//     })
+
+//     .catch((err) => {
+//       console.error(err);
+//       notesContainer.innerHTML = "Fout bij ophalen medische notities.";
+//     });
+// }
+
+// Ophalen van medische notities uit de API
+function getMedicalNotes(clientId) {
+  return fetchWithAuth(`${API_URL}/t/clients/${clientId}/medical_notes`);
+}
+
+// Filtert de niet-verwijderde notities
+function filterVisibleNotes(notes) {
+  return notes.filter(note => !note.deleted);
+}
+
+// toon notities
+function renderMedicalNotes(notes, containerId = "medicalNotes") {
+  const container = document.getElementById(containerId);
+
+  if (!notes || notes.length === 0) {
+    container.innerHTML = "Geen medische notities gevonden.";
+    return;
+  }
+
+  let html = "<h4>Medische notities:</h4><ul>";
+  notes.forEach(note => {
+    html += `<li><strong>ID:</strong> ${note.id}<br/>
+             <strong>Datum:</strong> ${note.startDate} - ${note.endDate || "nu"}<br/>
+             <strong>Inhoud:</strong> ${note.content}<br/>
+             <strong>Auteur:</strong> ${note.createdBy || note.authorId}</li><br/>`;
+  });
+  html += "</ul>";
+
+  container.innerHTML = html;
+}
+
+// Laad medical notes
 function fetchMedicalNotes(clientId) {
   const notesContainer = document.getElementById("medicalNotes");
   notesContainer.innerHTML = "Bezig met laden...";
 
-  // API medical_notes
-  fetchWithAuth(
-    `${API_URL}/t/clients/${clientId}/medical_notes`
-  )
-    
-    .then((data) => {
-      if (!data.medicalNotes || data.medicalNotes.length === 0) {
-        notesContainer.innerHTML = "Geen medische notities gevonden.";
-        return;
-      }
-
-      // Maak een lijst van niet verwijderde notities
-      let html = "<h4>Medische notities:</h4><ul>";
-      const visibleNotes = data.medicalNotes.filter((note) => !note.deleted);
-
-      if (visibleNotes.length === 0) {
-        notesContainer.innerHTML = "Geen medische notities gevonden.";
-        return;
-      }
-
-      visibleNotes.forEach((note) => {
-        html += `<li><strong>ID:</strong> ${note.id}<br/>
-                <strong>Datum:</strong> ${note.startDate} - ${
-          note.endDate || "nu"
-        }<br/>
-                <strong>Inhoud:</strong> ${note.content}<br/>
-                <strong>Auteur:</strong> ${
-                  note.createdBy || note.authorId
-                }</li><br/>`;
-      });
-      html += "</ul>";
-      notesContainer.innerHTML = html;
+  getMedicalNotes(clientId)
+    .then(data => {
+      const visibleNotes = filterVisibleNotes(data.medicalNotes || []);
+      renderMedicalNotes(visibleNotes);
     })
-
-    .catch((err) => {
+    .catch(err => {
       console.error(err);
       notesContainer.innerHTML = "Fout bij ophalen medische notities.";
     });
 }
+
+
+
+
 
 function fetchReportsByClient(clientId) {
   const reportsContainer = document.getElementById("reports");
