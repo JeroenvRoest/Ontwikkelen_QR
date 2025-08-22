@@ -132,13 +132,16 @@ function loadClientData(clientId) {
   getClientData(clientId)
     .then(data => {
       renderClientInfo(data);
-      setupClientButtons(data);
+      setupClientButtons(data);   
+      setClientButtonsEnabled(true); 
     })
     .catch(err => {
       console.error(err);
       alert("Fout bij ophalen cliëntgegevens.");
+      setClientButtonsEnabled(false); 
     });
 }
+
 
 
 
@@ -326,59 +329,136 @@ function fetchReportsByClient(clientId) {
     });
 }
 
+// //oude code
+// function fetchEmergencyContact(clientId) {
+//   // API URL
+//   const url = `${API_URL}/t/client_contact_relations/${clientId}`;
+//   const container = document.getElementById("emergencyContact");
 
-function fetchEmergencyContact(clientId) {
-  // API URL
+//   // Geef feedback dat het aan het laden is
+//   container.innerHTML = "Bezig met laden...";
+
+//   // Vraag de data op bij de API
+//   return fetchWithAuth(url)
+    
+    
+//     .then((data) => {
+//       const contactsArray = data.contacts;
+
+//       // Filter de op noodcontacten
+//       const emergencyContacts = contactsArray.filter(
+//         (contact) => contact.inCaseOfEmergency === true
+//       );
+
+//       if (emergencyContacts.length > 0) {
+//         const contact = emergencyContacts[0];
+
+//         container.innerHTML = `
+//           <p><strong>Naam:</strong> ${contact.name || "Onbekend"}</p>
+//           <p><strong>Relatie:</strong> ${
+//             contact.clientContactRelationType?.name ||
+//             contact.personalRelationType?.name ||
+//             "Onbekend"
+//           }</p>
+//           <p><strong>Telefoon:</strong> ${
+//             contact.personalRelationType?.relationCategory?.contactInfo ||
+//             "Onbekend"
+//           }</p>
+//         `;
+//       } else {
+//         // Geen noodcontact gevonden
+//         container.innerHTML = "Geen noodcontact gevonden.";
+//       }
+//     })
+//     .catch((err) => {
+//       // fout afhandeling
+//       console.error(err);
+//       container.innerHTML = "Fout bij ophalen noodcontact.";
+//     });
+// }
+
+// Ophalen van alle contacten uit de API
+function getContacts(clientId) {
   const url = `${API_URL}/t/client_contact_relations/${clientId}`;
-  const container = document.getElementById("emergencyContact");
+  return fetchWithAuth(url);
+}
 
-  // Geef feedback dat het aan het laden is
+// zoeken en weergeven van noodcontact
+function renderEmergencyContact(contacts, containerId = "emergencyContact") {
+  const container = document.getElementById(containerId);
+
+  // Filter de noodcontacten uit de lijst
+  const emergencyContacts = (contacts || []).filter(
+    contact => contact.inCaseOfEmergency === true
+  );
+
+  if (emergencyContacts.length > 0) {
+    const contact = emergencyContacts[0]; 
+    container.innerHTML = `
+      <p><strong>Naam:</strong> ${contact.name || "Onbekend"}</p>
+      <p><strong>Relatie:</strong> ${
+        contact.clientContactRelationType?.name ||
+        contact.personalRelationType?.name ||
+        "Onbekend"
+      }</p>
+      <p><strong>Telefoon:</strong> ${
+        contact.personalRelationType?.relationCategory?.contactInfo ||
+        "Onbekend"
+      }</p>
+    `;
+  } else {
+    container.innerHTML = "Geen noodcontact gevonden.";
+  }
+}
+
+// fecth emergency contacts
+function fetchEmergencyContact(clientId) {
+  const container = document.getElementById("emergencyContact");
   container.innerHTML = "Bezig met laden...";
 
-  // Vraag de data op bij de API
-  return fetchWithAuth(url)
-    
-    
-    .then((data) => {
-      const contactsArray = data.contacts;
-
-      // Filter de op noodcontacten
-      const emergencyContacts = contactsArray.filter(
-        (contact) => contact.inCaseOfEmergency === true
-      );
-
-      if (emergencyContacts.length > 0) {
-        const contact = emergencyContacts[0];
-
-        container.innerHTML = `
-          <p><strong>Naam:</strong> ${contact.name || "Onbekend"}</p>
-          <p><strong>Relatie:</strong> ${
-            contact.clientContactRelationType?.name ||
-            contact.personalRelationType?.name ||
-            "Onbekend"
-          }</p>
-          <p><strong>Telefoon:</strong> ${
-            contact.personalRelationType?.relationCategory?.contactInfo ||
-            "Onbekend"
-          }</p>
-        `;
-      } else {
-        // Geen noodcontact gevonden
-        container.innerHTML = "Geen noodcontact gevonden.";
-      }
+  getContacts(clientId)
+    .then(data => {
+      renderEmergencyContact(data.contacts || []);
     })
-    .catch((err) => {
-      // fout afhandeling
+    .catch(err => {
       console.error(err);
       container.innerHTML = "Fout bij ophalen noodcontact.";
     });
 }
 
+function setClientButtonsEnabled(enabled) {
+  const buttons = [
+    document.getElementById("showNotesBtn"),
+    document.getElementById("showReportsBtn"),
+    document.getElementById("showEmergencyContactBtn"),
+    document.getElementById("writeReportBtn"),
+  ];
+
+  buttons.forEach(btn => {
+    if (btn) btn.disabled = !enabled;
+  });
+}
+
+
+
+// document.addEventListener("DOMContentLoaded", () => {
+//   const clientId = getClientIdFromURL();
+//   if (clientId) {
+//     loadClientData(clientId);
+//   } else {
+//     alert("Geen cliënt-ID gevonden in de URL.");
+//   }
+// });
+
 document.addEventListener("DOMContentLoaded", () => {
+  setClientButtonsEnabled(false);
+
   const clientId = getClientIdFromURL();
   if (clientId) {
     loadClientData(clientId);
   } else {
     alert("Geen cliënt-ID gevonden in de URL.");
+    
   }
 });
+

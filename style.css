@@ -236,6 +236,12 @@ button#newScannerBtn {
   background-color: #F97216;
 }
 
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+
 
 
 
